@@ -1,13 +1,13 @@
-# Flask Rent Splitter 🏠
+# Rent Splitter
 
 A simple web app to calculate rent per head for roommates using Python + Flask.
 
-## 💻 Features
+## Features
 - Enter rent, food cost, electricity usage
 - Calculates per person amount
 - Built with Flask and HTML/CSS
 
-## 🚀 How to Run
+## How to Run
 
 ```bash
 # Clone the repo
