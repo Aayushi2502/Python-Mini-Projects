@@ -12,7 +12,7 @@ A simple web app to calculate rent per head for roommates using Python + Flask.
 ```bash
 # Clone the repo
 git clone https://github.com/Aayushi2502/python_mini_projects.git
-cd flask_rent_splitter
+cd rent_splitter
 
 # Set up virtual environment
 python -m venv venv
