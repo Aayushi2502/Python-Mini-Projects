@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rent Splitter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h1>Roommate Rent Splitter</h1>
+
+    <label>Rent of the apartment:</label>
+    <input type="number" id="rent"><br><br>
+
+    <label>Food expenses:</label>
+    <input type="number" id="food"><br><br>
+
+    <label>Electricity units used:</label>
+    <input type="number" id="elec"><br><br>
+
+    <label>Charge per unit:</label>
+    <input type="number" id="unit"><br><br>
+
+    <label>Number of roommates:</label>
+    <input type="number" id="members"><br><br>
+
+    <button onclick="calculateRent()">Calculate</button>
+
+    <h2 id="result"></h2>
+
+    <script>
+        function calculateRent() {
+            const rent = document.getElementById('rent').value;
+            const food = document.getElementById('food').value;
+            const elec = document.getElementById('elec').value;
+            const unit = document.getElementById('unit').value;
+            const members = document.getElementById('members').value;
+
+            fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ rent, food, elec, unit, members })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('result').innerText = "Error: " + data.error;
+                } else {
+                    document.getElementById('result').innerText = "Each roommate should pay: ₹" + data.per_head;
+                }
+            })
+            .catch(error => {
+                document.getElementById('result').innerText = "Something went wrong!";
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>
